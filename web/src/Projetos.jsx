@@ -85,6 +85,14 @@ export default function Projetos({ veiculo, aoAbrirProjeto }) {
         const porcentagem = p.orcamento_limite > 0 ? Math.min((gasto / p.orcamento_limite) * 100, 100) : 0;
         return (
           <div className="card" key={p.id_projeto}>
+            <button className="lixeira" title="Excluir categoria" onClick={() => excluir(p)}>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                <path d="M3 6h18" />
+                <path d="M8 6V4h8v2" />
+                <path d="M19 6l-1 14H6L5 6" />
+                <path d="M10 11v6M14 11v6" />
+              </svg>
+            </button>
             <div className="info">
               <div className="linha-titulo">
                 <strong>{p.titulo}</strong>
@@ -111,9 +119,6 @@ export default function Projetos({ veiculo, aoAbrirProjeto }) {
               <button onClick={() => aoAbrirProjeto(p)}>Abrir Peças</button>
               <button className="secundario" onClick={() => preencherParaEditar(p)}>
                 Editar
-              </button>
-              <button className="perigo" onClick={() => excluir(p)}>
-                Excluir
               </button>
             </div>
           </div>
