@@ -1,0 +1,7 @@
+__pycache__/
+web/node_modules/
+web/dist/
+
+# Arquivo com a senha do site — NUNCA sobe para o GitHub
+segredo.py
+DEPLOY.md

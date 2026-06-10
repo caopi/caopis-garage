@@ -1,0 +1,391 @@
+/* Estilo da interface GARAGE DB — tema escuro de oficina,
+   inspirado em dashboards modernos (Vercel, Linear). */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Inter", "Segoe UI", Arial, sans-serif;
+  background-color: #101216;
+  color: #e8ecf1;
+}
+
+.app {
+  display: flex;
+  min-height: 100vh;
+}
+
+.carregando {
+  padding: 40px;
+  color: #6b7482;
+}
+
+/* ---------- Barra lateral (fixa) ---------- */
+.menu {
+  width: 270px;
+  flex-shrink: 0;
+  background-color: #16191e;
+  border-right: 1px solid #262b33;
+  padding: 20px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+}
+
+.foto-carro {
+  width: 100%;
+  border-radius: 12px;
+  border: 1px solid #262b33;
+}
+
+.logo {
+  font-size: 21px;
+  text-align: center;
+  color: #f36f21;
+  letter-spacing: 1px;
+  margin-top: 10px;
+}
+
+.subtitulo {
+  text-align: center;
+  color: #8b94a1;
+  font-size: 13px;
+  line-height: 1.6;
+  margin-bottom: 14px;
+}
+
+.menu button {
+  text-align: left;
+  background-color: transparent;
+  color: #c8cfd9;
+  font-weight: normal;
+  border: 1px solid transparent;
+}
+
+.menu button:hover {
+  background-color: #20242b;
+  color: #fff;
+}
+
+.menu button.ativo {
+  background-color: #f36f21;
+  color: #16191e;
+  font-weight: bold;
+}
+
+.menu .botao-sair {
+  margin-top: auto; /* empurra o botão para o pé da barra lateral */
+}
+
+/* ---------- Tela de login ---------- */
+.tela-login {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.caixa-login {
+  width: 100%;
+  max-width: 340px;
+  background-color: #16191e;
+  border: 1px solid #262b33;
+  border-radius: 16px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.caixa-login input {
+  padding: 11px 12px;
+  border: 1px solid #353c46;
+  border-radius: 8px;
+  background-color: #101216;
+  color: #e8ecf1;
+  font-size: 14px;
+}
+
+.caixa-login input:focus {
+  outline: none;
+  border-color: #f36f21;
+}
+
+.caixa-login .logo {
+  margin-bottom: 8px;
+}
+
+.erro-login {
+  color: #e74c3c;
+  font-size: 13px;
+  text-align: center;
+}
+
+/* ---------- Área principal: coluna centralizada ---------- */
+.principal {
+  flex: 1;
+  padding: 48px 32px;
+  display: flex;
+  justify-content: center;
+}
+
+/* A tela inteira (filho direto) vira uma coluna central de largura confortável */
+.principal > div {
+  width: 100%;
+  max-width: 760px;
+}
+
+h2 {
+  margin: 12px 0 24px;
+  font-size: 26px;
+}
+
+/* ---------- Botões ---------- */
+button {
+  background-color: #f36f21;
+  color: #16191e;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  padding: 9px 14px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.15s;
+}
+
+button:hover {
+  background-color: #ff8a44;
+}
+
+button.secundario {
+  background-color: transparent;
+  color: #c8cfd9;
+  font-weight: normal;
+  border: 1px solid #353c46;
+}
+
+button.secundario:hover {
+  background-color: #20242b;
+  color: #fff;
+}
+
+button.perigo {
+  background-color: transparent;
+  color: #e07b72;
+  font-weight: normal;
+  border: 1px solid #5c2a25;
+}
+
+button.perigo:hover {
+  background-color: #b8392e;
+  color: #fff;
+}
+
+/* ---------- Formulários ---------- */
+.formulario {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  background-color: #16191e;
+  border: 1px solid #262b33;
+  padding: 14px;
+  border-radius: 12px;
+  margin-bottom: 28px;
+}
+
+.formulario input {
+  flex: 1;
+  min-width: 140px;
+  padding: 10px 12px;
+  border: 1px solid #353c46;
+  border-radius: 8px;
+  background-color: #101216;
+  color: #e8ecf1;
+  font-size: 14px;
+}
+
+.formulario input::placeholder {
+  color: #6b7482;
+}
+
+.formulario input:focus {
+  outline: none;
+  border-color: #f36f21;
+}
+
+/* ---------- Cards (categorias e peças) ---------- */
+.card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background-color: #16191e;
+  border: 1px solid #262b33;
+  border-radius: 12px;
+  padding: 16px 18px;
+  margin-bottom: 10px;
+  transition: border-color 0.15s;
+}
+
+.card:hover {
+  border-color: #3a414c;
+}
+
+.info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.linha-titulo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.linha-titulo strong {
+  font-size: 16px;
+}
+
+.info span {
+  color: #8b94a1;
+  font-size: 13px;
+}
+
+/* Selo de pendências da categoria */
+.selo {
+  font-size: 11px;
+  font-weight: 600;
+  color: #f36f21;
+  background-color: rgba(243, 111, 33, 0.12);
+  border: 1px solid rgba(243, 111, 33, 0.35);
+  border-radius: 99px;
+  padding: 2px 9px;
+}
+
+.selo.verde {
+  color: #4cc97a;
+  background-color: rgba(46, 174, 96, 0.12);
+  border-color: rgba(46, 174, 96, 0.35);
+}
+
+.acoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.vazio {
+  color: #6b7482;
+  padding: 20px 0;
+}
+
+/* ---------- Barra de progresso do orçamento ---------- */
+.barra {
+  width: 100%;
+  height: 8px;
+  background-color: #262b33;
+  border-radius: 4px;
+  margin-top: 6px;
+}
+
+.barra-cheia {
+  height: 100%;
+  background-color: #2eae60;
+  border-radius: 4px;
+}
+
+.barra-cheia.estourou {
+  background-color: #b8392e;
+}
+
+/* ---------- Peças ---------- */
+.checagem {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.checagem input {
+  width: 17px;
+  height: 17px;
+  accent-color: #f36f21;
+  flex-shrink: 0;
+}
+
+.comprado {
+  text-decoration: line-through;
+  color: #6b7482;
+}
+
+/* ---------- Painel de resumo (Relatório e Peças) ---------- */
+.painel-resumo {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.resumo {
+  flex: 1;
+  min-width: 150px;
+  background-color: #16191e;
+  border: 1px solid #262b33;
+  border-radius: 12px;
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.resumo span {
+  color: #8b94a1;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.resumo strong {
+  font-size: 20px;
+  color: #f36f21;
+}
+
+/* ---------- Relatório ---------- */
+.relatorio-card {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0;
+}
+
+.linha-relatorio {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 6px;
+  border-bottom: 1px solid #262b33;
+  padding: 11px 0;
+  font-size: 14px;
+}
+
+.linha-relatorio:last-child {
+  border-bottom: none;
+}
+
+.linha-relatorio span:last-child {
+  color: #8b94a1;
+}
+
+.perigo-texto {
+  color: #e74c3c;
+  font-weight: bold;
+}
