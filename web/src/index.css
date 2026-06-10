@@ -1,5 +1,3 @@
-/* Estilo da interface GARAGE DB — tema escuro de oficina,
-   inspirado em dashboards modernos (Vercel, Linear). */
 
 * {
   box-sizing: border-box;
@@ -79,11 +77,114 @@ body {
   font-weight: bold;
 }
 
-.menu .botao-sair {
-  margin-top: auto; /* empurra o botão para o pé da barra lateral */
+/* Rádio */
+.radio {
+  margin-top: auto;
+  background-color: #1b1f25;
+  border: 1px solid #262b33;
+  border-radius: 12px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
 }
 
-/* ---------- Tela de login ---------- */
+/* O player de verdade do YouTube fica escondido*/
+.radio-oculto {
+  width: 0;
+  height: 0;
+  overflow: hidden;
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.radio-capa {
+  width: 110px;
+  height: 110px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid #262b33;
+}
+
+.radio-capa-vazia {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 36px;
+  background-color: #262b33;
+}
+
+.radio-titulo {
+  font-size: 12px;
+  color: #c8cfd9;
+  text-align: center;
+  line-height: 1.3;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.radio-controles {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.radio-controles button {
+  background-color: transparent;
+  border: none;
+  color: #c8cfd9;
+  font-size: 16px;
+  padding: 6px;
+  cursor: pointer;
+  border-radius: 6px;
+  line-height: 1;
+}
+
+.radio-controles button:hover {
+  background-color: #262b33;
+  color: #fff;
+}
+
+.radio-controles .radio-play {
+  font-size: 20px;
+  color: #f36f21;
+}
+
+/* Botão aleatório*/
+.radio-controles .radio-ativo {
+  background-color: #f36f21;
+  color: #16191e;
+}
+
+.radio-controles .radio-ativo:hover {
+  background-color: #ff7d2e;
+  color: #16191e;
+}
+
+.radio-controles svg {
+  display: block;
+}
+
+.radio-volume {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+  font-size: 12px;
+}
+
+.radio-volume input[type="range"] {
+  flex: 1;
+  accent-color: #f36f21;
+}
+
+/* Tela de login */
 .tela-login {
   min-height: 100vh;
   display: flex;
@@ -128,7 +229,7 @@ body {
   text-align: center;
 }
 
-/* ---------- Área principal: coluna centralizada ---------- */
+/*  Área principal  */
 .principal {
   flex: 1;
   padding: 48px 32px;
@@ -136,7 +237,7 @@ body {
   justify-content: center;
 }
 
-/* A tela inteira (filho direto) vira uma coluna central de largura confortável */
+
 .principal > div {
   width: 100%;
   max-width: 760px;
@@ -147,7 +248,7 @@ h2 {
   font-size: 26px;
 }
 
-/* ---------- Botões ---------- */
+/* Botões */
 button {
   background-color: #f36f21;
   color: #16191e;
@@ -188,7 +289,7 @@ button.perigo:hover {
   color: #fff;
 }
 
-/* ---------- Formulários ---------- */
+
 .formulario {
   display: flex;
   flex-wrap: wrap;
@@ -220,9 +321,9 @@ button.perigo:hover {
   border-color: #f36f21;
 }
 
-/* ---------- Cards (categorias e peças) ---------- */
+
 .card {
-  position: relative; /* para a lixeira poder ficar fixa no canto */
+  position: relative; 
   display: flex;
   align-items: center;
   gap: 16px;
@@ -234,7 +335,7 @@ button.perigo:hover {
   transition: border-color 0.15s;
 }
 
-/* Lixeira discreta no canto superior direito do card */
+
 .lixeira {
   position: absolute;
   top: 8px;
@@ -279,7 +380,6 @@ button.perigo:hover {
   font-size: 13px;
 }
 
-/* Selo de pendências da categoria */
 .selo {
   font-size: 11px;
   font-weight: 600;
@@ -307,7 +407,7 @@ button.perigo:hover {
   padding: 20px 0;
 }
 
-/* ---------- Barra de progresso do orçamento ---------- */
+/*  Barra de progresso do orçamento */
 .barra {
   width: 100%;
   height: 8px;
@@ -326,7 +426,7 @@ button.perigo:hover {
   background-color: #b8392e;
 }
 
-/* ---------- Peças ---------- */
+/*  Peças */
 .checagem {
   flex: 1;
   display: flex;
@@ -348,7 +448,7 @@ button.perigo:hover {
   color: #6b7482;
 }
 
-/* ---------- Painel de resumo (Relatório e Peças) ---------- */
+/* Painel de resumo */
 .painel-resumo {
   display: flex;
   flex-wrap: wrap;
@@ -380,7 +480,7 @@ button.perigo:hover {
   color: #f36f21;
 }
 
-/* ---------- Relatório ---------- */
+/*  Relatório  */
 .relatorio-card {
   flex-direction: column;
   align-items: stretch;

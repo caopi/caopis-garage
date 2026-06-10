@@ -103,13 +103,6 @@ class GerenciadorBanco:
         cursor.close()
 
 
-    def atualizar_veiculo(self, id_veiculo, modelo, ano, placa, caminho_foto=""):
-        sql = "UPDATE veiculos SET modelo = ?, ano = ?, placa = ?, caminho_foto = ? WHERE id_veiculo = ?"
-        cursor = self.conexao.cursor()
-        cursor.execute(sql, (modelo, ano, placa, caminho_foto, id_veiculo))
-        self.conexao.commit()
-        cursor.close()
-
     def atualizar_projeto(self, id_projeto, titulo, orcamento_limite):
         sql = "UPDATE projetos SET titulo = ?, orcamento_limite = ? WHERE id_projeto = ?"
         cursor = self.conexao.cursor()

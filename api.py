@@ -1,20 +1,19 @@
-# API web do projeto GARAGE DB.
-# Este arquivo é a "ponte" entre a página web (React) e o banco de dados (database.py).
+# API web do projeto
+# Este arquivo é a "ponte" entre React e o banco de dados.
 # Cada rota abaixo recebe um pedido da página e usa o GerenciadorBanco para responder.
 
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-from database import GerenciadorBanco, Veiculo, Projeto, Peca
+from database import GerenciadorBanco, Projeto, Peca
 import segredo  # usuário e senha ficam nesse arquivo, que não sobe para o GitHub
 
 app = Flask(__name__)
 CORS(app)  # permite que a página web (que roda em outro endereço) converse com esta API
 
 
-# =========================================================
-# LOGIN / PROTEÇÃO
-# =========================================================
 
+
+# LOGIN 
 @app.before_request
 def porteiro():
     """Roda antes de TODAS as rotas: barra quem não mandou a senha certa."""
@@ -33,10 +32,7 @@ def login():
     return jsonify({"ok": False}), 401
 
 
-# =========================================================
 # VEÍCULOS
-# =========================================================
-
 @app.route("/api/veiculos", methods=["GET"])
 def listar_veiculos():
     db = GerenciadorBanco()
@@ -46,29 +42,7 @@ def listar_veiculos():
     return jsonify([vars(v) for v in veiculos])
 
 
-@app.route("/api/veiculos", methods=["POST"])
-def criar_veiculo():
-    dados = request.get_json()
-    veiculo = Veiculo(dados["modelo"], dados["ano"], dados["placa"], dados.get("caminho_foto", ""))
-    db = GerenciadorBanco()
-    db.inserir_veiculo(veiculo)
-    db.fechar_conexao()
-    return jsonify(vars(veiculo)), 201
-
-
-@app.route("/api/veiculos/<int:id_veiculo>", methods=["PUT"])
-def atualizar_veiculo(id_veiculo):
-    dados = request.get_json()
-    db = GerenciadorBanco()
-    db.atualizar_veiculo(id_veiculo, dados["modelo"], dados["ano"], dados["placa"], dados.get("caminho_foto", ""))
-    db.fechar_conexao()
-    return jsonify({"ok": True})
-
-
-# =========================================================
 # PROJETOS
-# =========================================================
-
 @app.route("/api/projetos", methods=["GET"])
 def listar_projetos():
     db = GerenciadorBanco()
@@ -113,10 +87,8 @@ def deletar_projeto(id_projeto):
     return jsonify({"ok": True})
 
 
-# =========================================================
-# PEÇAS
-# =========================================================
 
+# PEÇAS
 @app.route("/api/pecas", methods=["GET"])
 def listar_pecas():
     db = GerenciadorBanco()

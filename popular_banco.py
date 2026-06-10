@@ -1,7 +1,4 @@
-# Script que cadastra no banco a lista de peças do Del Rey.
-# Cada categoria (Motor, Freios...) vira um PROJETO, e cada item vira uma PEÇA dele.
-# O valor das peças começa em 0 — vá preenchendo os preços pelo site conforme for comprando.
-# Rode apenas uma vez: python popular_banco.py
+
 
 from database import GerenciadorBanco, Veiculo, Projeto, Peca
 
@@ -85,7 +82,6 @@ PECAS_POR_CATEGORIA = {
 
 db = GerenciadorBanco()
 
-# Usa o primeiro veículo do banco (o Del Rey) ou cadastra um se o banco estiver vazio
 veiculos = db.listar_veiculos()
 if veiculos:
     carro = veiculos[0]
@@ -93,7 +89,6 @@ else:
     carro = Veiculo(modelo="Ford Del Rey GL 1.6", ano=1987, placa="CSD-8549")
     db.inserir_veiculo(carro)
 
-# Cadastra só as categorias que ainda não existem, para não duplicar nada
 titulos_existentes = [p.titulo for p in db.listar_projetos() if p.id_veiculo == carro.id_veiculo]
 total = 0
 for categoria, lista_de_pecas in PECAS_POR_CATEGORIA.items():

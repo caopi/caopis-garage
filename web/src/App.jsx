@@ -4,9 +4,10 @@ import Login from "./Login.jsx";
 import Projetos from "./Projetos.jsx";
 import Pecas from "./Pecas.jsx";
 import Relatorio from "./Relatorio.jsx";
+import Radio from "./Radio.jsx";
 import fotoCarro from "./assets/delrey.jpg";
 
-// O aplicativo é focado em um único carro: o primeiro veículo do banco (o Del Rey).
+// O aplicativo é focado em um único carro
 // Este componente controla o login e qual tela aparece na área principal.
 export default function App() {
   const [logado, setLogado] = useState(localStorage.getItem("senha") !== null);
@@ -74,6 +75,7 @@ export default function App() {
         <button className={tela === "relatorio" ? "ativo" : ""} onClick={() => trocarTela("relatorio")}>
           📊 Relatório Financeiro
         </button>
+        <Radio />
         <button className="botao-sair" onClick={sair}>
           🚪 Sair
         </button>
