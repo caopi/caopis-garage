@@ -1,14 +1,11 @@
 import { useState, useEffect } from "react";
 import { apiGet, apiEnviar } from "./api.js";
 
-// Tela inicial: as categorias da restauração (Motor, Freios, Suspensão...).
-// Cada categoria é um "projeto" no banco, com seu próprio orçamento e peças.
+
 export default function Projetos({ veiculo, aoAbrirProjeto }) {
   const [projetos, setProjetos] = useState([]);
-  const [pecas, setPecas] = useState([]); // todas as peças, para calcular o gasto de cada projeto
+  const [pecas, setPecas] = useState([]); 
   const [editando, setEditando] = useState(null);
-
-  // Campos do formulário
   const [titulo, setTitulo] = useState("");
   const [orcamento, setOrcamento] = useState("");
 
@@ -21,9 +18,13 @@ export default function Projetos({ veiculo, aoAbrirProjeto }) {
     carregar();
   }, []);
 
-  // Soma o valor das peças já compradas (status 1) de um projeto
   function gastoDoProjeto(idProjeto) {
     const pecasDoProjeto = pecas.filter((p) => p.id_projeto === idProjeto && p.status === 1);
+    return pecasDoProjeto.reduce((soma, p) => soma + p.valor, 0);
+  }
+
+  function valorTotalDoProjeto(idProjeto) {
+    const pecasDoProjeto = pecas.filter((p) => p.id_projeto === idProjeto);
     return pecasDoProjeto.reduce((soma, p) => soma + p.valor, 0);
   }
 
@@ -81,8 +82,9 @@ export default function Projetos({ veiculo, aoAbrirProjeto }) {
 
       {projetos.map((p) => {
         const gasto = gastoDoProjeto(p.id_projeto);
+        const totalPecas = valorTotalDoProjeto(p.id_projeto);
         const pendentes = pendentesDoProjeto(p.id_projeto);
-        const porcentagem = p.orcamento_limite > 0 ? Math.min((gasto / p.orcamento_limite) * 100, 100) : 0;
+        const porcentagem = totalPecas > 0 ? Math.min((gasto / totalPecas) * 100, 100) : 0;
         return (
           <div className="card" key={p.id_projeto}>
             <button className="lixeira" title="Excluir categoria" onClick={() => excluir(p)}>
@@ -106,12 +108,9 @@ export default function Projetos({ veiculo, aoAbrirProjeto }) {
                 Gasto: R$ {gasto.toFixed(2)}
                 {p.orcamento_limite > 0 && <> de R$ {p.orcamento_limite.toFixed(2)}</>}
               </span>
-              {p.orcamento_limite > 0 && (
+              {totalPecas > 0 && (
                 <div className="barra">
-                  <div
-                    className={gasto > p.orcamento_limite ? "barra-cheia estourou" : "barra-cheia"}
-                    style={{ width: porcentagem + "%" }}
-                  ></div>
+                  <div className="barra-cheia" style={{ width: porcentagem + "%" }}></div>
                 </div>
               )}
             </div>

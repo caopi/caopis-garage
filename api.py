@@ -17,7 +17,6 @@ CORS(app)  # permite que a página web (que roda em outro endereço) converse co
 @app.before_request
 def porteiro():
     """Roda antes de TODAS as rotas: barra quem não mandou a senha certa."""
-    # O navegador manda um pedido extra "OPTIONS" antes dos outros (CORS); deixa passar
     if request.method == "OPTIONS" or request.path == "/api/login":
         return
     if request.headers.get("X-Senha") != segredo.SENHA:
@@ -51,6 +50,8 @@ def listar_projetos():
     return jsonify([vars(p) for p in projetos])
 
 
+
+#Separa por carros caso decida adiconar mais veiculos no futuro 
 @app.route("/api/veiculos/<int:id_veiculo>/projetos", methods=["GET"])
 def listar_projetos_do_veiculo(id_veiculo):
     db = GerenciadorBanco()

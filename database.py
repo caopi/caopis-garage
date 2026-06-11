@@ -150,6 +150,7 @@ class GerenciadorBanco:
         cursor.close()
         return [Peca(id_peca=l[0], descricao=l[1], valor=l[2], id_projeto=l[3], status=l[4]) for l in linhas]
 
+
     def listar_projetos(self):
         """Mantido para a aba de relatório geral."""
         cursor = self.conexao.cursor()
@@ -173,6 +174,9 @@ class GerenciadorBanco:
         cursor.execute(sql, (nova_descricao, novo_valor, id_peca))
         self.conexao.commit()
         cursor.close()
+
+
+
 
 if __name__ == "__main__":
     db = GerenciadorBanco()

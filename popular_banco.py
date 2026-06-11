@@ -1,5 +1,3 @@
-
-
 from database import GerenciadorBanco, Veiculo, Projeto, Peca
 
 PECAS_POR_CATEGORIA = {

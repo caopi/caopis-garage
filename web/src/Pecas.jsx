@@ -1,12 +1,9 @@
 import { useState, useEffect } from "react";
 import { apiGet, apiEnviar } from "./api.js";
 
-// Tela 3: peças do projeto escolhido. Marque a caixinha quando comprar a peça.
 export default function Pecas({ projeto, aoVoltar }) {
   const [pecas, setPecas] = useState([]);
   const [editando, setEditando] = useState(null);
-
-  // Campos do formulário
   const [descricao, setDescricao] = useState("");
   const [valor, setValor] = useState("");
 
@@ -45,7 +42,6 @@ export default function Pecas({ projeto, aoVoltar }) {
     setValor(p.valor);
   }
 
-  // Troca o status: 0 (pendente) vira 1 (comprado) e vice-versa
   async function trocarStatus(p) {
     await apiEnviar("PUT", "/pecas/" + p.id_peca + "/status", { status: p.status === 1 ? 0 : 1 });
     carregar();
